@@ -1,0 +1,28 @@
+version: '3.3' 
+services:
+  web: 
+    image: kantaponkk/plex:v1
+    networks: 
+    - webproxy 
+    logging:
+      driver: json-file
+    container_name: spcn12plex
+    deploy: 
+      replicas: 1
+      labels: 
+        - traefik.docker.network=webproxy
+        - traefik.enable=true
+        - traefik.http.routers.spcn12plex-https.entrypoints=websecure 
+        - traefik.http.routers.spcn12plex-https.rule=Host("spcn12plex.xops.ipv9.xyz")
+        - traefik.http.routers.spcn12plex-https.tls.certresolver=default
+        - traefik.http.services.spcn12plex.loadbalancer.server.port=32400
+      resources: 
+        reservations: 
+          cpus: '0.1'
+          memory: 10M
+        limits: 
+          cpus: '0.4'
+          memory: 170M
+networks: 
+  webproxy: 
+    external: true
