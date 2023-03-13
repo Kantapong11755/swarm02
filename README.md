@@ -74,6 +74,7 @@ networks:
 spcn12plex.xops.ipv9.xyz
 ```
 
+![image](https://github.com/Kantapong11755/swarm02/blob/master/plex.png)
   
   
   
